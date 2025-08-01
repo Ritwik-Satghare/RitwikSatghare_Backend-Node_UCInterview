@@ -1,0 +1,16 @@
+{
+  "name": "friends-api-db",
+  "version": "1.0.0",
+  "description": "This is the 3rd task of the DJS Unicode Committee",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ritwik Harshal Satghare",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.17.0"
+  }
+}
