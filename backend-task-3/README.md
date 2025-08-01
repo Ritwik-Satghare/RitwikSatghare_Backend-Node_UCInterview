@@ -20,10 +20,3 @@ It allows you to **store, fetch, and manage episode data** in a MongoDB Atlas da
 - **Postman** (API testing)
 
 ---
-
-## ⚙️ Setup Instructions
-
-### 1️⃣ Clone the Repository
-```bash
-git clone <https://github.com/Ritwik-Satghare>
-cd task3
