@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "1e061a5c-c567-4dec-86aa-718da5844dfe",
+		"name": "Central Perk API",
+		"description": "This API was created for unicode commitee  \nBackend with Nodejs  \nTask -1;\n\nBase URL: [http://localhost:3000](http://localhost:3000)\n\nEndpoints:\n\n- /show-details: Returns information about the Friends show.\n    \n- /episode-details: Returns details about all the episodes (arranged as per release date).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47137254",
+		"_collection_link": "https://ritwik-satghare-6269556.postman.co/workspace/4b5675e7-f48c-49bf-a5ea-cf2c08328b0e/collection/47137254-1e061a5c-c567-4dec-86aa-718da5844dfe?action=share&source=collection_link&creator=47137254"
+	},
+	"item": [
+		{
+			"name": "Get Show Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/show-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"show-details"
+					]
+				},
+				"description": "Returns information about the Friends show."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Episodes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/episode-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"episode-details"
+					]
+				},
+				"description": "Returns details about all the episodes (arranged as per release date)."
+			},
+			"response": []
+		}
+	]
+}
