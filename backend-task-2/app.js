@@ -7,7 +7,7 @@ const port = 3000
 
 app.use(morgan('dev')); 
 
-app.use('/episode-details', episodeRoute)
+app.use('/episodes', episodeRoute)
 app.use('/show-details', showRoute)
 
 app.get('/', (req, res) => {
