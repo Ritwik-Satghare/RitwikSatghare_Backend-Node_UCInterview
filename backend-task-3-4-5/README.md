@@ -20,3 +20,15 @@ It allows you to **store, fetch, and manage episode data** in a MongoDB Atlas da
 - **Postman** (API testing)
 
 ---
+## Project Structure
+backend-task-3-4-5/
+│
+├── app.js                  # Main entry point
+├── models/
+│   ├── episodeDB.js        # Episode schema/model (episodes collection)
+│   └── watchedEpisodeDB.js  # Watched episode schema/model (watchedepisodes collection)
+├── routes/
+│   ├── episodeRoutes.js     # Routes for episode CRUD
+│   └── watchedEpisodeRoutes.js # Routes for watched episode logging
+└── package.json
+
