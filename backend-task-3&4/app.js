@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 await mongoose.connect(
-  "mongodb+srv://ritwik-satghare:E93eh1UIgHzkB9XA@friends0.bi25law.mongodb.net/test"
+  "mongodb+srv://ritwik-satghare:E93eh1UIgHzkB9XA@friends0.bi25law.mongodb.net/friends"
 );
 console.log("App connected to DB");
 
@@ -14,8 +14,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   //hello world
-  //Hello World
-  res.send("Hello World!");
+  res.status(200).send("Hello World!");
 });
 
 app.get("/api/episodes", async (req, res) => {
@@ -32,18 +31,16 @@ app.get("/api/episodes", async (req, res) => {
 });
 
 app.get("/api/episode/:id", async (req, res) => {
-  // to get a specific episode by id.
+  // to get a specific episode by TVmaze id
   try {
     const id = req.params.id;
-    const episode = await Episode.findById(id);
-    if (!episode) {
+    const episode = await Episode.findOne({ id: id });
+    if (episode.length === 0) {
       return res.status(404).json({ message: "Episode not found" });
+    } else {
+      res.status(200).json(episode);
     }
-    res.json(episode);
   } catch (error) {
-    if (error.name == "CastError") {
-      res.status(400).json({ message: "Invalid episode ID format" });
-    }
     console.log(error);
     res.status(500).json({ message: "Failed to get the episode" });
   }
@@ -55,10 +52,11 @@ app.get("/api/seasons/:seasonNumber/episodes", async (req, res) => {
     const episode = await Episode.find({
       season: req.params.seasonNumber,
     });
-    if (!episode) {
+    if (episode.length === 0) {
       return res.status(404).json({ message: "Episode not found" });
+    } else {
+      res.status(200).json(episode);
     }
-    res.json(episode);
   } catch (error) {
     if (error.name == "CastError") {
       res.status(400).json({ message: "Invalid episode ID format" });
@@ -77,10 +75,11 @@ app.get(
         season: req.params.seasonNumber,
         number: req.params.episodeNumber,
       });
-      if (!episode) {
+      if (episode.length === 0) {
         return res.status(404).json({ message: "Episode not found" });
+      } else {
+        res.status(200).json(episode);
       }
-      res.json(episode);
     } catch (error) {
       if (error.name == "CastError") {
         res.status(400).json({ message: "Invalid episode ID format" });
@@ -94,19 +93,68 @@ app.get(
 app.post("/api/episodes", async (req, res) => {
   // add a new episode
   try {
-    const episode = new Episode({
-      name: req.body.name,
-      season: req.body.season,
-      number: req.body.number,
-      airdate: req.body.airdate,
-      rating: req.body.rating,
-      summary: req.body.summary,
-    });
-    await episode.save();
-    res.json(episode);
+    const episode = await Episode.create(req.body);
+    res.status(200).json(episode);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error creating episode" });
+  }
+});
+
+app.put("/api/episodes/:id", async (req, res) => {
+  // update an episode fully
+  // dont forget to put id in body
+  const id = req.params.id;
+  const updates = req.body;
+  try {
+    const result = await Episode.findOneAndUpdate(
+      { id: id },
+      { $set: updates },
+      { new: true } // dont forget
+    );
+    if (!result) res.status(404).send("Episode not found");
+    else {
+      res.status(200).json(result);
+    }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Failed to add the episode" });
+    res.status(500).send("Error updating episode");
+  }
+});
+
+app.patch("/api/episodes/:id", async (req, res) => {
+  // update an episode fully
+  // dont forget to put id in body
+  const id = req.params.id;
+  const updates = req.body;
+  try {
+    const result = await Episode.findOneAndUpdate(
+      { id: id },
+      { $set: updates },
+      { new: true }
+    );
+    if (!result) res.status(404).send("Episode not found");
+    else {
+      res.status(200).json(result);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error updating episode");
+  }
+});
+
+app.delete("/api/episodes/:id", async (req, res) => {
+  // delete an episode
+  const id = req.params.id;
+  try {
+    const result = await Episode.findOneAndDelete({ id: id });
+    if (!result) res.status(404).send("Episode not found");
+    else {
+      res.status(200).json({ message: "Deleted Succesfully" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error deleting episode");
   }
 });
 

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { Episode } from "../models/episodeDB.js";
 
 await mongoose.connect(
-  "mongodb+srv://ritwik-satghare:E93eh1UIgHzkB9XA@friends0.bi25law.mongodb.net/"
+  "mongodb+srv://ritwik-satghare:E93eh1UIgHzkB9XA@friends0.bi25law.mongodb.net/friends"
 );
 console.log("Seed connected to DB");
 
@@ -11,6 +11,7 @@ const data = await response.json();
 
 for (let i = 0; i < data.length; i++) {
   const episode = new Episode({
+    id: data[i].id,
     name: data[i].name,
     season: data[i].season,
     number: data[i].number,

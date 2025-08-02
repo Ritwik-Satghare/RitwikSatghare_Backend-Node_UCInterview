@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const episodeSchema = new mongoose.Schema({
+  id: Number,
   name: String,
   season: Number,
   number: Number,
