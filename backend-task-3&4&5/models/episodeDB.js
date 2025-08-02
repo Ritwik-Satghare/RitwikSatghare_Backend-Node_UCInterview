@@ -11,3 +11,4 @@ const episodeSchema = new mongoose.Schema({
 });
 
 export const Episode = mongoose.model("Episode", episodeSchema);
+
