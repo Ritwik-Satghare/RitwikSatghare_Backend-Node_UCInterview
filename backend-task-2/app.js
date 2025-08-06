@@ -1,7 +1,7 @@
 const express = require('express')
 const episodeRoute = require('./routes/episodeRoute');
 const showRoute=require('./routes/showroute');
-const morgan = require('morgan'); // <-- Import morgan
+const morgan = require('morgan');
 const app = express()
 const port = 3000
 

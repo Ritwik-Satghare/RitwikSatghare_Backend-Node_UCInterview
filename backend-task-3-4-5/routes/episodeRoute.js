@@ -90,7 +90,7 @@ router.post("/episodes", async (req, res) => {
 });
 
 // update an episode fully
-// dont forget to put id in body
+// dont forget to put id in req
 router.put("/episodes/:id", async (req, res) => {
   const id = req.params.id;
   const updates = req.body;

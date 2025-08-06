@@ -1,6 +1,5 @@
 import express from "express";
 import { watchedEpisode } from "../models/watchedEpisodeDB.js";
-import e from "express";
 
 const router = express.Router();
 

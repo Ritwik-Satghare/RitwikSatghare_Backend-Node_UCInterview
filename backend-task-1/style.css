@@ -61,7 +61,7 @@ button#myButton {
 button#myButton:hover,
 button#myButton:focus {
     background-color: #283593;
-    box-shadow: 0 4px 12px rgba(63,81,181,0.15);
+    box-shadow: 0 4px 12px #3F51B526;
 }
 #errorMsg{
     color: red;
